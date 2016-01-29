@@ -11,7 +11,7 @@
 <div class="navbar">
 	<%= link_to 'Breweries', breweries_path %>
 	<%= link_to 'Beers', beers_path %>
-	<%= link_to 'Ratings', ratings_path %>
+	<%= lin_to 'Ratings', ratings_path %>
 </div>
 
 <%= yield %>

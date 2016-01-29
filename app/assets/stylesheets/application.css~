@@ -18,3 +18,8 @@
     padding: 10px;
     background: #EFEFEF;
 }
+
+a.navbar:hover {
+	background: #696969;
+	color: red;
+}

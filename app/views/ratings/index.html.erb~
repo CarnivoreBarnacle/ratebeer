@@ -1,0 +1,11 @@
+
+<h2>Listing of ratings</h2>
+
+<ul>
+ <% @ratings.each do |rating| %>
+   <li> <%= rating %> </li>
+ <% end %>
+</ul>
+
+
+<%= link_to ratings_new_path %>

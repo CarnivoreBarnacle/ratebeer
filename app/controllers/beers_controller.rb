@@ -1,6 +1,15 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
+  
+  before_action :new_edit_setup, only: [:new, :edit]
 
+	#Placeholder
+	def new_edit_setup
+		@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+		@breweries = Brewery.all
+	end
+	
+	
   # GET /beers
   # GET /beers.json
   def index
@@ -28,7 +37,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
-        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
+        format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
         format.html { render :new }
