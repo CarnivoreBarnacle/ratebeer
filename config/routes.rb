@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   resources :beers
   resources :breweries
   
-  get 'ratings', to: 'ratings#index'
-  get 'ratings/new', to:'ratings#new'
+  resources :ratings, only: [:index, :new, :create, :destroy]  
   
-	post 'ratings', to: 'ratings#create'  
   
 end

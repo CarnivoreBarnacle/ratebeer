@@ -3,9 +3,9 @@
 
 <ul>
  <% @ratings.each do |rating| %>
-   <li> <%= rating %> </li>
+   <li> <%= rating %>    <%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure? } %></li>
  <% end %>
 </ul>
 
 
-<%= link_to ratings_new_path %>
+<%= link_to 'Create new', new_rating_path %>
