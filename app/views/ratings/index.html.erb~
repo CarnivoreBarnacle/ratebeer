@@ -3,7 +3,7 @@
 
 <ul>
  <% @ratings.each do |rating| %>
-   <li> <%= rating %>    <%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure? } %></li>
+   <li> <%= rating %>    <%= link_to rating.user.name, rating.user%></li>
  <% end %>
 </ul>
 

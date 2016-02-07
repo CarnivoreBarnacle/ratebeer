@@ -1,10 +1,10 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   
-  before_action :new_edit_setup, only: [:new, :edit]
+  before_action :styles_and_breweries_setup, only: [:new, :edit, :create]
 
-	#Placeholder
-	def new_edit_setup
+	#Sets up styles and breweries
+	def styles_and_breweries_setup
 		@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
 		@breweries = Brewery.all
 	end
