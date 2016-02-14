@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 		
 		if user and user.authenticate(params[:password])
 			session[:user_id] = user.id
-			redirect_to user
+			redirect_to user, notice: "Welcome back!"
 		else
 			redirect_to :back, notice: "Wrong username or password!"
 		end

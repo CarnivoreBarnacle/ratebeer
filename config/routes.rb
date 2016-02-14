@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   	resources :ratings, only: [:index, :new, :create, :destroy]  
   
+  	get 'signin', to: 'sessions#new'
   	get 'signup', to: 'users#new'  
 	delete 'signout', to: 'sessions#destroy'	
 	  

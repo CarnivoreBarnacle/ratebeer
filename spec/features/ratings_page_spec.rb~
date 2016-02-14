@@ -1,0 +1,13 @@
+require 'rails_helper'
+
+
+describe "Ratings" do
+	
+	it "count matches database" do
+		F
+	
+	end
+end
+
+
+def create_bee
