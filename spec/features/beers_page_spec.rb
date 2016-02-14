@@ -1,8 +1,15 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "Beer" do
 	let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
 	
+	before :each do
+    FactoryGirl.create :user
+    sign_in(username:"Pekka", password:"Foobar1")
+  	end	
+		
 	it "can be added" do
 		add_beer(name:"Test")
 		
