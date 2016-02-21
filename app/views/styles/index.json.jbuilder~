@@ -1,4 +1,0 @@
-json.array!(@styles) do |style|
-  json.extract! style, :id, :string, :text
-  json.url style_url(style, format: :json)
-end
