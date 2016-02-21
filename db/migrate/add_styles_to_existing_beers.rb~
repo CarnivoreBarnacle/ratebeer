@@ -1,0 +1,6 @@
+def AddStylesToExistingBeers < ActiveRecord::Migration
+	def change
+	
+	end
+
+end

@@ -24,10 +24,15 @@ FactoryGirl.define do
 		name "second"
 		year 1990
 	end
-
+	
+	factory :style do
+		name "Test"
+		description "something something something"
+	end	
+	
   	factory :beer do
     	name "anonymous"
     	brewery
-    	style "Lager"
+    	style
   	end
 end

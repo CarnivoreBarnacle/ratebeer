@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 	end	
 	
 	def highest_rated_style
-		styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+		styles = Style.all
 		avg_rating_for_style = Hash.new
 		
 		styles.each do |s|

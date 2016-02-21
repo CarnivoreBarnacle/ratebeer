@@ -1,0 +1,44 @@
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+	<% if not @user.ratings.empty? %>
+ 		Favorite beer: <%= link_to @user.favorite_beer, @user.favorite_beer %> <br>
+ 		Favorite style: <%= link_to @user.favorite_style %> <br>
+ 		Favorite brewery: <%= link_to @user.favorite_brewery.name, @user.favorite_brewery %>
+	<% end %>
+</p>
+
+
+<p>
+	<% if @user.ratings.empty? %>
+ 		User has not rated any beers yet!
+	<% else %>
+ 		Has rated <%= pluralize(@user.ratings.count, 'beer', 'beers')%>,
+ 		Average score: <%= @user.average_rating%> <br>
+ 	<%end%>
+</p>
+
+<ul>
+	<% @user.ratings.each do |rating| %>
+		<% if current_user == rating.user %>
+			<li><%= rating%> <%= link_to 'Delete', rating, method: :delete %></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<p>
+	User is a member of the following beer clubs: <br>
+	<% @user.beer_clubs.each do |beer_club| %>
+		<%= link_to beer_club.name, beer_club %> <br>
+	<% end %>
+</p>
+
+<% if current_user == @user %>
+	<%= link_to 'Edit', edit_user_path(@user) %>
+	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', users_path %>

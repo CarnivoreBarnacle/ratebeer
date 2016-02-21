@@ -5,8 +5,6 @@
 	<%= submit_tag "Search" %>
 <% end %>
 
-<p id="notice"><%= notice %></p>
-
 <% if @places %>
 	<table>
 		<thead>
@@ -19,6 +17,7 @@
 			   	<% Place.rendered_fields.each do |f| %>
 			    		<td><%= place.send(f) %></td>
 			  		<% end %>
+			  		<td><%= link_to 'info', place_path(place.id) %></td>
 				</tr>
 		 	<% end %>
 	</table>

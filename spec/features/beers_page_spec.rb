@@ -7,12 +7,13 @@ describe "Beer" do
 	
 	before :each do
     	FactoryGirl.create :user
+    	FactoryGirl.create :style
+    	FactoryGirl.create :brewery
     	sign_in(username:"Pekka", password:"Foobar1")
   	end	
 		
 	it "can be added" do
 		add_beer(name:"Test")
-		
 		expect(Beer.count).to eq(1)
 		expect(page).to have_content 'Beer was successfully created.'
 		expect(page).to have_content 'Test'

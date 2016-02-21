@@ -1,18 +1,18 @@
 class BeersController < ApplicationController
-  before_action :set_beer, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:index, :show]
+	before_action :set_beer, only: [:show, :edit, :update, :destroy]
+	before_action :ensure_that_signed_in, except: [:index, :show]
   
-  before_action :styles_and_breweries_setup, only: [:new, :edit, :create]
+	before_action :styles_and_breweries_setup, only: [:new, :edit, :create, :update]
 
 	#Sets up styles and breweries
 	def styles_and_breweries_setup
-		@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+		@styles = Style.all
 		@breweries = Brewery.all
 	end
 	
 	
-  # GET /beers
-  # GET /beers.json
+	# GET /beers
+	# GET /beers.json
   def index
     @beers = Beer.all
   end
@@ -20,6 +20,8 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+  	@rating = Rating.new
+  	@rating.beer = @beer
   end
 
   # GET /beers/new
@@ -35,7 +37,6 @@ class BeersController < ApplicationController
   # POST /beers.json
   def create
     @beer = Beer.new(beer_params)
-
     respond_to do |format|
       if @beer.save
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
@@ -79,6 +80,6 @@ class BeersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
-      params.require(:beer).permit(:name, :style, :brewery_id)
+      params.require(:beer).permit(:name, :style_id, :brewery_id)
     end
 end

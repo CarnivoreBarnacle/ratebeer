@@ -38,12 +38,13 @@ describe "User" do
 		let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
 		let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
 		let!(:rating1) { FactoryGirl.create :rating, score:10, user:@user, beer:beer1}		
+		let!(:style) {FactoryGirl.create :style}
 		
 		it "displays favorite beer, style and brewery" do
 			visit user_path(@user)
 			
 			expect(page).to have_content 'Favorite beer: iso 3, Koff'
-			expect(page).to have_content 'Favorite style: Lager'
+			expect(page).to have_content 'Favorite style: Test'
 			expect(page).to have_content 'Favorite brewery: Koff'
 		end
 	end  

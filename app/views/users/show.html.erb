@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Username:</strong>
@@ -8,7 +7,7 @@
 <p>
 	<% if not @user.ratings.empty? %>
  		Favorite beer: <%= link_to @user.favorite_beer, @user.favorite_beer %> <br>
- 		Favorite style: <%= @user.favorite_style %> <br>
+ 		Favorite style: <%= link_to @user.favorite_style.name, @user.favorite_style %> <br>
  		Favorite brewery: <%= link_to @user.favorite_brewery.name, @user.favorite_brewery %>
 	<% end %>
 </p>
