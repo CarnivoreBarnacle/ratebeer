@@ -26,7 +26,7 @@ describe "BeermappingApi" do
 		end		
 		
 		it "When HTTP GET returns one entry, it is parsed and returned" do
-	    	places = get("espoo")
+	    	places = BeermappingApi.places_in("espoo")
 	
 	    	expect(places.size).to eq(1)
 	    	place = places.first
@@ -35,7 +35,7 @@ describe "BeermappingApi" do
 		end
 		
 		it "When HTTP GET returns multiple entries, all are parsed and returned" do
-			places = get("helsinki")
+			places = BeermappingApi.places_in("helsinki")
 	
 	    	expect(places.size).to eq(3)
 	    	expect(places.first.name).to eq("Pullman Bar")
@@ -45,7 +45,7 @@ describe "BeermappingApi" do
 		end
 		
 		it "When HTTP GET returns none, array is empty" do
-			places = get("empty")
+			places = BeermappingApi.places_in("empty")
 			
 			expect(places).to be_empty
 		end
