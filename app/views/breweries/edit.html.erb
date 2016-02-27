@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @brewery %> |
+<%= link_to 'Destroy', @brewery, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'  %>
 <%= link_to 'Back', breweries_path %>

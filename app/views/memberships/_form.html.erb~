@@ -16,6 +16,6 @@
     <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :to_s) %>
   </div>
   <div class="actions">
-    <%= f.submit class:'btn btn-primary'%>
+    <%= f.submit %>
   </div>
 <% end %>
