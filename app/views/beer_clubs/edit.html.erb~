@@ -1,6 +1,0 @@
-<h1>Editing Beer Club</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Destroy', @beer_club, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'  %>|
-<%= link_to 'Back', beer_clubs_path %>
