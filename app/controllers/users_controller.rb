@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :toggle_ban]
 
   # GET /users
   # GET /users.json
@@ -60,6 +60,13 @@ class UsersController < ApplicationController
       format.json { head :no_content }
       session[:user_id] = nil
     end
+  end
+  
+  def toggle_ban
+	 @user.update_attribute(:banned, !@user.banned) if current_user.admin
+	 msg = 'User has been banned' if @user.banned
+	 msg = 'Ban has been removed' if !@user.banned
+	 redirect_to @user, notice: msg
   end
 
   private

@@ -17,11 +17,10 @@
         <td><%= link_to beer.name, beer %></td>
         <td><%= link_to beer.style.name, beer.style %></td>
         <td><%= link_to beer.brewery.name, beer.brewery %></td>
-        <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<%= link_to('New Beer', new_beer_path) if current_user %>
+<%= link_to 'Create New', new_brewery_path, class:'btn btn-primary'%>

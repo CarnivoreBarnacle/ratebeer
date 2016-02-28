@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :styles
+	root 'breweries#index'
+		
+	resources :styles
   	resources :memberships
   	resources :beer_clubs
-	root 'breweries#index'
-  	resources :users
+  	resources :users do
+		post 'toggle_ban', on: :member
+	end
 
   	resources :beers
   	resources :breweries
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
   	get 'signin', to: 'sessions#new'
   	get 'signup', to: 'users#new'  
 	delete 'signout', to: 'sessions#destroy'	
+	
+		
 	
 	resources :places, only:[:index, :show]
 	post 'places', to:'places#search'

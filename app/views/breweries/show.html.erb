@@ -2,6 +2,9 @@
 <h2>
   <%= @brewery.name %>
 </h2>
+ <% if not @brewery.active  %>
+      <span class="label label-info">retired</span>
+<% end %>
 
 <p>
   <i>
@@ -18,7 +21,7 @@
  		No ratings yet!
 	<% else %>
  		Has <%= pluralize(@brewery.ratings.count, 'rating', 'ratings')%>,
- 		Average score: <%= @brewery.average_rating%>
+ 		Average score: <%= round @brewery.average_rating%>
 	<% end %>
 </p>
 
@@ -28,5 +31,6 @@
  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
-<%= link_to 'Back', breweries_path %>
+<br>
+<%= edit_and_destroy_buttons(@brewery) %>
+<br>

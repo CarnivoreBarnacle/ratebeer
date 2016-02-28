@@ -1,8 +1,19 @@
 
 <p>
-  <strong>Username:</strong>
-  <%= @user.username %>
+  <strong><%= @user.username %></strong>
+  <% if @user.banned %>
+  	<i> (Banned)</i>
+  <% end %>
 </p>
+
+<% if current_user and current_user.admin and current_user != @user %>
+	<% if @user.banned %>
+		<%= link_to "remove ban", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+	<% else %>
+		<%= link_to "ban", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+	<% end %>
+<% end %>
+
 
 <p>
 	<% if not @user.ratings.empty? %>
@@ -18,7 +29,7 @@
  		User has not rated any beers yet!
 	<% else %>
  		Has rated <%= pluralize(@user.ratings.count, 'beer', 'beers')%>,
- 		Average score: <%= @user.average_rating%> <br>
+ 		Average score: <%= round @user.average_rating%> <br>
  	<%end%>
 </p>
 

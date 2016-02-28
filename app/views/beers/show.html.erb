@@ -11,7 +11,7 @@
 
 <p>
   <strong>Brewery:</strong>
-  <%= @beer.brewery_id %>
+  <%= link_to @beer.brewery.name, @beer.brewery %>
 </p>
 
 <p>
@@ -19,7 +19,7 @@
  		Beer has not yet been rated!
 	<% else %>
  		Has <%= pluralize(@beer.ratings.count, 'rating', 'ratings')%>,
- 		Average score: <%= @beer.average_rating%>
+ 		Average score: <%= round @beer.average_rating %>
 	<% end %>
 </p>
 
@@ -35,4 +35,5 @@
   <% end %>
 
 <% end %>
-<%= link_to 'Edit', edit_beer_path(@beer) %> | <%= link_to 'Back', beers_path %>
+<br>
+<%= edit_and_destroy_buttons(@beer) %>

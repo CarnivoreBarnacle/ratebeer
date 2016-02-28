@@ -9,6 +9,10 @@ class Beer < ActiveRecord::Base
 	
 	belongs_to :style
 	
+	def self.top(n)
+		Beer.all.sort_by{ |b| -(b.average_rating||0) }.first(n)
+	end		
+	
 	def to_s
 		"#{name}, #{brewery.name}"
 	end	

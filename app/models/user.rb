@@ -22,35 +22,26 @@ class User < ActiveRecord::Base
 	end
 	
 	def favorite_style
-		return nil if ratings.empty?
-		highest_rated_style
+		favorite :style
 	end
 	
 	def favorite_brewery
-		return nil if ratings.empty?
-		highest_rated_brewery
+		favorite :brewery
 	end	
 	
-	def highest_rated_style
-		styles = Style.all
-		avg_rating_for_style = Hash.new
-		
-		styles.each do |s|
-			avg_rating_for_style[s] = get_average_score(ratings.reject{|r| not r.beer.style.eql?(s)})
-		end
-		
-		avg_rating_for_style.sort_by(&:last).last.first
-	end
+	def favorite(category)
+		return nil if ratings.empty?
+
+		rated = ratings.map{ |r| r.beer.send(category) }.uniq
+		rated.sort_by { |item| -rating_of(category, item) }.first
+	end	
+
+	def self.top(n)
+		User.all.sort_by{ |u| -(u.ratings.count) }.first(n)
+	end	
 	
-	def highest_rated_brewery
-		breweries = Brewery.all
-		avg_rating_for_brewery = Hash.new
-		
-		breweries.each do |b|
-			avg_rating_for_brewery[b] = get_average_score(ratings.reject{|r| not r.beer.brewery.eql?(b)})
-		end
-		
-		avg_rating_for_brewery.sort_by(&:last).last.first
-	end
-	
+	def rating_of(category, item)
+    ratings_of = ratings.select{ |r| r.beer.send(category)==item }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
+  end
 end
