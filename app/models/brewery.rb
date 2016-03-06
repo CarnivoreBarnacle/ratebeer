@@ -30,4 +30,8 @@ class Brewery < ActiveRecord::Base
 			errors.add(:year, "can't be greater than current year (#{Time.now.year})")
 		end
 	end
+	
+	def beer_count
+		self.beers.count
+	end
 end

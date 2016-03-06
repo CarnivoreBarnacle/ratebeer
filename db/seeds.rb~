@@ -41,8 +41,8 @@ b6.save
 b7.save
 =end
 
-users = 100           # jos koneesi on hidas, riittää esim 100
-breweries = 50       # jos koneesi on hidas, riittää esim 50
+users = 200           # jos koneesi on hidas, riittää esim 100
+breweries = 100       # jos koneesi on hidas, riittää esim 50
 beers_in_brewery = 40
 ratings_per_user = 30
 

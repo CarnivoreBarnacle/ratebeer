@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 	delete 'signout', to: 'sessions#destroy'	
 	
 	get 'brewerylist', to:'breweries#list'
-	get 'beerlist', to:'beers#list'	
+	get 'beerlist', to:'breweries#list'	
 	
 	resources :places, only:[:index, :show]
 	post 'places', to:'places#search'

@@ -1,0 +1,19 @@
+
+
+<h2>Beers</h2>
+
+<div ng-app="myApp" ng-controller="BeersController">
+  <table class="table table-hover">
+    <thead>
+      <th> <a ng-click="sort_by('name')">Name</a> </th>
+      <th> <a ng-click="sort_by('style.name')">Style</a> </th>
+      <th> <a ng-click="sort_by('brewery_name')">Brewery</a> </th>
+    </thead>
+
+    <tr ng-repeat="beer in beers | orderBy:order">
+      <td>{{beer.name}}</td>
+      <td>{{beer.style.name}}</td>
+      <td>{{beer.brewery_name}}</td>
+    </tr>
+  </table>
+</div>

@@ -19,7 +19,7 @@ describe "Beer Page" do
 		expect(page).to have_content 'Test'
 	end
 	
-	it "beer cannot be added without a name" do
+	it "cannot be added without a name" do
 		visit new_beer_path
 		click_button 'Create Beer'
 		

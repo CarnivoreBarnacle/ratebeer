@@ -1,7 +1,7 @@
 class Beer < ActiveRecord::Base
 	include RatingAverage
 	
-	belongs_to :brewery
+	belongs_to :brewery, touch: true
 	has_many :ratings, dependent: :destroy
 	has_many :raters, -> {uniq}, through: :ratings, source: :user
 	
@@ -17,4 +17,7 @@ class Beer < ActiveRecord::Base
 		"#{name}, #{brewery.name}"
 	end	
 	
+	def brewery_name
+	  self.brewery.name
+	end
 end

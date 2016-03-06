@@ -1,35 +1,30 @@
 
-<h2>
-  <%= @brewery.name %>
-</h2>
- <% if not @brewery.active  %>
-      <span class="label label-info">retired</span>
-<% end %>
-
-<p>
-  <i>
-  Established at <%= @brewery.year %>
-  </i>
-</p>
-
-<p>
-	Number of beers: <%= @brewery.beers.count %>
-</p>
-
-<p>
-	<% if @brewery.ratings.empty? %>
+<% cache @brewery do %>
+  <h2><%= @brewery.name %></h2>
+  <% if not @brewery.active  %>
+    <span class="label label-info">retired</span>
+  <% end %>
+  <p>
+    <i>Established at <%= @brewery.year %></i>
+  </p>
+  <p>
+	  Number of beers: <%= @brewery.beers.count %>
+  </p>
+  <p>
+	 <% if @brewery.ratings.empty? %>
  		No ratings yet!
-	<% else %>
+	 <% else %>
  		Has <%= pluralize(@brewery.ratings.count, 'rating', 'ratings')%>,
  		Average score: <%= round @brewery.average_rating%>
-	<% end %>
-</p>
+	 <% end %>
+  </p>
+  <p>
+    <% @brewery.beers.each do |beer| %>
+      <%= link_to beer.name, beer %> <br>
+    <% end %>
+  </p>
+<% end %>
 
-<p>
- <% @brewery.beers.each do |beer| %>
-   <%= link_to beer.name, beer %> <br>
- <% end %>
-</p>
 
 <br>
 <%= edit_and_destroy_buttons(@brewery) %>
